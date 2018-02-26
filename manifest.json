@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "Venmo Stat Calculator",
+  "description": "This extension reads information about a users Venmo transactions and calculates stats based on them",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "logo-mark.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://venmo.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "web_accessible_resources": [
+    "results.html"
+  ]
+}
