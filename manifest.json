@@ -22,6 +22,7 @@
     "scripts": ["background.js"]
   },
   "web_accessible_resources": [
-    "results.html"
+    "results.html",
+    "http://oz.bags4mycause.com/login.aspx"
   ]
 }

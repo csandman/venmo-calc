@@ -12,7 +12,7 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
-      loadResultsFile();
+      // loadResultsFile();
       clickMoreButtons();
 
     }
@@ -27,7 +27,12 @@ function clickNextButton() {
     //If there is a button in the "save" state, then we need to deal with it first and
     //  not move to the next "update" button until the "save" button changes to "saved".
     if (document.querySelector('.moreButton')) {
-      if (document.querySelector('.moreButton').innerText == "No more payments") {
+      // if (document.querySelector('.moreButton').innerText == "No more payments") {
+      //   return false;
+      // } else {
+      //   document.querySelector('.moreButton').click();
+      // }
+      if (document.querySelector('#profile_feed_no_stories').style.display != "none") {
         return false;
       } else {
         document.querySelector('.moreButton').click();
@@ -42,7 +47,7 @@ function clickMoreButtons() {
   } else {
     console.log('donclickingbuttons');
     console.log(document.querySelector('.venmo-calc-results'));
-    document.querySelector('.venmo-calc-loader').classList.add('hidden');
+    // document.querySelector('.venmo-calc-loader').classList.add('hidden');
     calcStats();
   }
 }
@@ -74,7 +79,7 @@ function calcStats() {
   console.log(me);
   names = [...names].map(a => a.innerText);
   console.log(names);
-  chargedArr = names.reduce(a => a.includes('charged'))
+  chargedArr = names.filter(a => a.includes('charged'))
   console.log(chargedArr);
   // paidArr = [...names].innterText.reduce(a => a.includes('paid'));
   // chargedMe = chargedArr.reduce(a  => a.children[1] == me);
