@@ -12,12 +12,40 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
-      // loadResultsFile();
+      
       clickMoreButtons();
-
+      // injectContainer();
     }
   }
 );
+
+function injectContainer() {
+  console.log('new function')
+  var outerDiv = document.createElement("div");
+  outerDiv.setAttribute("style", "display:flex;");
+
+  var bodyDiv = document.createElement("div");
+  bodyDiv.setAttribute("style", "flex:4;");
+  bodyDiv.id = "wrap";
+
+  var sideDiv = document.createElement("div");
+  sideDiv.setAttribute("style", "flex:1;background-color:grey");
+  sideDiv.innerText = "This is my new sidebar";
+
+  // Move the body's children into this wrapper
+  while (document.body.firstChild)
+  {
+      bodyDiv.appendChild(document.body.firstChild);
+  }
+
+  console.log(bodyDiv);
+
+  outerDiv.appendChild(bodyDiv);
+  outerDiv.appendChild(sideDiv);
+
+  // Append the wrapper to the body
+  document.body.appendChild(outerDiv);
+}
 function clickNextButton() {
     //This will click the next button in the sequence which we desire.
     //  A single button is moved from "update" (click) -> "save" (click) -> "saved".
@@ -81,6 +109,9 @@ function calcStats() {
   console.log(names);
   chargedArr = names.filter(a => a.includes('charged'))
   console.log(chargedArr);
+
+  loadResultsFile();
+  document.querySelector('.ui.modal').modal('show');
   // paidArr = [...names].innterText.reduce(a => a.includes('paid'));
   // chargedMe = chargedArr.reduce(a  => a.children[1] == me);
   // console.log(chargedMe);
