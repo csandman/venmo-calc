@@ -4,7 +4,7 @@
 </p>
 <p align="center" style="font-size: 1.2rem;">Check how much you've gotten...or given away on venmo!</p>
 <p style="display:flex;justify-content:space-evenly">
-  <img src="./images/screenshot-1.png" alt="Screenshot 1" height="400" />
-  <img src="./images/screenshot-2.png" alt="Screenshot 2" height="400" />
-  <img src="./images/screenshot-3.png" alt="Screenshot 3" height="400" />
+  <img src="./images/screenshot-1.png" alt="Screenshot 1" height="300" />
+  <img src="./images/screenshot-2.png" alt="Screenshot 2" height="300" />
+  <img src="./images/screenshot-3.png" alt="Screenshot 3" height="300" />
 </p>
