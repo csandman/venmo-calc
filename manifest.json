@@ -1,28 +1,26 @@
 {
-  "manifest_version": 2,
-
   "name": "Venmo Stat Calculator",
-  "description": "This extension reads information about a users Venmo transactions and calculates stats based on them",
   "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "logo-mark.png"
-  },
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://venmo.com/*"],
-      "js": ["content.js"]
-    }
-  ],
+  "description": "Collect stats from your venmo profile page and do some maths on them!",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+    "persistent": false
   },
-  "web_accessible_resources": [
-    "results.html",
-    "http://oz.bags4mycause.com/login.aspx"
-  ]
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/venmo_logo16.png",
+      "32": "images/venmo_logo32.png",
+      "48": "images/venmo_logo48.png",
+      "128": "images/venmo_logo128.png"
+    }
+  },
+  "icons": {
+    "16": "images/venmo_logo16.png",
+    "32": "images/venmo_logo32.png",
+    "48": "images/venmo_logo48.png",
+    "128": "images/venmo_logo128.png"
+  },
+  "manifest_version": 2
 }

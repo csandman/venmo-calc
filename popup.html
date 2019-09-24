@@ -1,55 +1,65 @@
-<!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-    <style type="text/css">
-      body {
-        margin: 10px;
-        white-space: nowrap;
-      }
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-      h1 {
-        font-size: 15px;
-      }
-
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-    -->
-    <script src="popup.js"></script>
+    <link href="popup.css" rel="stylesheet" />
   </head>
-
   <body>
-    <h1>Background Color Changer</h1>
-    <div id="container">
-      <span>Choose a color</span>
-      <select id="dropdown">
-        <option selected disabled hidden value=''></option>
-        <option value="white">White</option>
-        <option value="pink">Pink</option>
-        <option value="green">Green</option>
-        <option value="yellow">Yellow</option>
-      </select>
-    </div>
+    <header>
+      <img src="images/logo_full.png" alt="Venmo Logo" />
+      <h1>stats</h1>
+    </header>
+    <section class="popup-content">
+      <section class="initial-content">
+        <h2>Instructions</h2>
+        <ol>
+          <li>
+            Head over to <a href="https://venmo.com">venmo.com</a> and log in
+          </li>
+          <li>Click on your name in the top bar of the page</li>
+          <li>Click the collect stats button below</li>
+          <li>Wait for all of your stats to load (this could take a while depending on how many transactions you have)</li>
+        </ol>
+        <section class="button-container">
+          <button id="calc-stats-button" class="btn btn-lg btn-primary">
+            Collect Stats
+          </button>
+        </section>
+      </section>
+
+      <section class="final-content hidden">
+        <h3>
+          <span>Total Sent:</span>
+          <span id="total-sent" class="red"></span>
+        </h3>
+        <h3>
+          <span>Total Received:</span>
+          <span id="total-received" class="green"></span>
+        </h3>
+        <h3 class="net-total-row">
+          <span>Net Total:</span>
+          <span id="net-total"></span>
+        </h3>
+        <h3>All Emojis Used</h3>
+        <section class="emoji-list"></section>
+      </section>
+
+      <section class="loader-container hidden">
+        <img src="images/loader.svg" />
+      </section>
+    </section>
+    <script src="popup.js"></script>
   </body>
 </html>
