@@ -6,6 +6,13 @@
 
 let calcStatsButton = document.getElementById("calc-stats-button");
 
+chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+  console.log(tabs[0]);
+  if (!tabs[0].url.includes("https://venmo.com")) {
+    calcStatsButton.disabled = true;
+  }
+});
+
 console.log(calcStatsButton);
 // chrome.storage.sync.get('color', function(data) {
 //   changeColor.style.backgroundColor = data.color;
