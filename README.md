@@ -2,7 +2,7 @@
   <img src="./images/logo.png" alt="Venmo logo" height="130" />
   <h1 align="center">Venmo Stats Calculator</h1>
 </p>
-<p align="center" style="font-size: 1.2rem;">Check how much you've gotten...or given away on venmo!</p>
+<p align="center" style="font-size: 1.2rem;">Check how much you've gotten...or given away on <a href="https://venmo.com">Venmo</a>!</p>
 <p align="center">
   <img src="./images/screenshot-1.png" alt="Screenshot 1" height="320" />
   <img src="./images/screenshot-2.png" alt="Screenshot 2" height="320" />
