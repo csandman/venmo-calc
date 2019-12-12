@@ -11,7 +11,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
 
 console.log(calcStatsButton);
 
-calcStatsButton.onclick = element => {
+calcStatsButton.onclick = () => {
   console.log('Click:', calcStatsButton);
   document.querySelector('.initial-content').classList.add('hidden');
   document.querySelector('.loader-container').classList.remove('hidden');
@@ -20,15 +20,22 @@ calcStatsButton.onclick = element => {
   });
 };
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 chrome.runtime.onMessage.addListener(function(message, callback) {
   console.log('message', message);
   if (message.title === 'collectionDone') {
-    document.getElementById('total-sent').innerText = `$${message.sentTotal}`;
-    document.getElementById(
-      'total-received'
-    ).innerText = `$${message.recievedTotal}`;
+    document.getElementById('total-sent').innerText = `$${numberWithCommas(
+      message.sentTotal
+    )}`;
+    document.getElementById('total-received').innerText = `$${numberWithCommas(
+      message.recievedTotal
+    )}`;
     const netTotal = message.recievedTotal - message.sentTotal;
-    const netTotalStr = netTotal > 0 ? `+$${netTotal}` : `-$${netTotal}`;
+    let netTotalStr = netTotal > 0 ? `+$${netTotal}` : `-$${netTotal}`;
+    netTotalStr = numberWithCommas(netTotalStr);
     document
       .getElementById('net-total')
       .classList.add(netTotal > 0 ? 'green' : 'red');
