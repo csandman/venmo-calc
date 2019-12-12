@@ -1,7 +1,7 @@
 body {
   height: 500px;
   width: 400px;
-  font-family: "Muli", sans-serif;
+  font-family: 'Muli', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -67,7 +67,9 @@ h1 {
   overflow-y: scroll;
 }
 
-.final-content::-webkit-scrollbar { width: 0 !important }
+.final-content::-webkit-scrollbar {
+  width: 0 !important;
+}
 
 .final-content h3 {
   display: flex;
@@ -118,7 +120,7 @@ h1 {
 
 h3.results-title {
   margin: 0;
-  padding: 0 0 .75rem 0;
+  padding: 0 0 0.75rem 0;
   font-weight: 900;
   border-bottom: 1px solid lightgray;
 }

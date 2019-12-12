@@ -2,16 +2,16 @@ clickMoreButtons();
 
 function clickNextButton() {
   window.scrollTo(0, document.body.scrollHeight);
-  if (document.querySelector(".moreButton")) {
+  if (document.querySelector('.moreButton')) {
     if (
-      document.querySelector("#profile_feed_no_stories").style.display !==
-        "none" ||
-      document.querySelector(".moreButton").innerText.toLowerCase() ===
-        "no more payments"
+      document.querySelector('#profile_feed_no_stories').style.display !==
+        'none' ||
+      document.querySelector('.moreButton').innerText.toLowerCase() ===
+        'no more payments'
     ) {
       return false;
     } else {
-      document.querySelector(".moreButton").click();
+      document.querySelector('.moreButton').click();
     }
   }
 
@@ -23,8 +23,8 @@ function clickMoreButtons() {
     //Keep clicking buttons until there are none in the "update" or "save" states.
     setTimeout(clickMoreButtons, 100);
   } else {
-    console.log("donclickingbuttons");
-    console.log(document.querySelector(".venmo-calc-results"));
+    console.log('donclickingbuttons');
+    console.log(document.querySelector('.venmo-calc-results'));
     calcStats();
   }
 }
@@ -36,25 +36,25 @@ function getEmojis(str) {
 }
 
 function calcStats() {
-  var recievedArr = [...document.querySelectorAll(".bold.medium.green")];
+  var recievedArr = [...document.querySelectorAll('.bold.medium.green')];
   recievedArr = recievedArr.map(el => parseFloat(el.innerText.slice(2)));
-  var sentArr = [...document.querySelectorAll(".bold.medium.red")];
+  var sentArr = [...document.querySelectorAll('.bold.medium.red')];
   sentArr = sentArr.map(el => parseFloat(el.innerText.slice(2)));
   console.log(recievedArr, sentArr);
   recievedTotal = recievedArr.reduce((a, b) => a + b).toFixed(2);
   sentTotal = sentArr.reduce((a, b) => a + b).toFixed(2);
   console.log(recievedTotal, sentTotal);
 
-  var names = document.querySelectorAll(".m_five_t.p_ten_r");
+  var names = document.querySelectorAll('.m_five_t.p_ten_r');
   console.log(names);
-  var me = document.querySelector(".rectBox .p_ten_t .bold").innerText;
+  var me = document.querySelector('.rectBox .p_ten_t .bold').innerText;
   console.log(me);
   names = [...names].map(a => a.innerText);
   console.log(names);
-  chargedArr = names.filter(a => a.includes("charged"));
+  chargedArr = names.filter(a => a.includes('charged'));
   console.log(chargedArr);
 
-  const emojiArr = getEmojis(document.querySelector("body").innerText);
+  const emojiArr = getEmojis(document.querySelector('body').innerText);
 
   // TODO: Map each transaction to an object
 
@@ -74,7 +74,7 @@ function calcStats() {
 
   chrome.runtime.sendMessage(
     {
-      title: "collectionDone",
+      title: 'collectionDone',
       recievedArr,
       sentArr,
       recievedTotal,
