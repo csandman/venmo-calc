@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/icon.svg" alt="Venmo logo" height="128"/>
+  <img src="./images/github-icon.png" alt="Venmo logo" height="128"/>
   <h1 align="center">Venmo Stats Calculator</h1>
 </p>
 <p align="center" style="font-size: 1.2rem;">Check how much you've gotten...or given away on <a href="https://venmo.com">Venmo</a>!</p>
