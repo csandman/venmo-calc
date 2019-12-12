@@ -64,10 +64,19 @@ button {
   border-radius: 0.25rem;
   cursor: pointer;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+  border: 0;
+  outline: none;
 }
 
 button:hover {
   background: var(--venmo-blue-shade);
+}
+
+button:disabled,
+button:disabled:hover {
+  background: #999;
+  cursor: default;
+  box-shadow: none;
 }
 
 a {
