@@ -24,6 +24,10 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+function getNetTotal(recieved, sent) {
+  return Math.round((recieved - sent) * 100) / 100;
+}
+
 chrome.runtime.onMessage.addListener(function(message, callback) {
   console.log('message', message);
   if (message.title === 'collectionDone') {
@@ -33,8 +37,9 @@ chrome.runtime.onMessage.addListener(function(message, callback) {
     document.getElementById('total-received').innerText = `$${numberWithCommas(
       message.recievedTotal
     )}`;
-    const netTotal = message.recievedTotal - message.sentTotal;
-    let netTotalStr = netTotal > 0 ? `+$${netTotal}` : `-$${netTotal}`;
+    const netTotal = getNetTotal(message.recievedTotal, message.sentTotal);
+    let netTotalStr =
+      netTotal > 0 ? `+$${netTotal}` : `-$${Math.abs(netTotal)}`;
     netTotalStr = numberWithCommas(netTotalStr);
     document
       .getElementById('net-total')
