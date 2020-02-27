@@ -23,8 +23,6 @@ function clickMoreButtons() {
     //Keep clicking buttons until there are none in the "update" or "save" states.
     setTimeout(clickMoreButtons, 100);
   } else {
-    console.log('donclickingbuttons');
-    console.log(document.querySelector('.venmo-calc-results'));
     calcStats();
   }
 }
@@ -36,23 +34,17 @@ function getEmojis(str) {
 }
 
 function calcStats() {
-  var recievedArr = [...document.querySelectorAll('.bold.medium.green')];
+  let recievedArr = [...document.querySelectorAll('.bold.medium.green')];
   recievedArr = recievedArr.map(el => parseFloat(el.innerText.slice(2)));
-  var sentArr = [...document.querySelectorAll('.bold.medium.red')];
+  let sentArr = [...document.querySelectorAll('.bold.medium.red')];
   sentArr = sentArr.map(el => parseFloat(el.innerText.slice(2)));
-  console.log(recievedArr, sentArr);
   recievedTotal = recievedArr.reduce((a, b) => a + b).toFixed(2);
   sentTotal = sentArr.reduce((a, b) => a + b).toFixed(2);
-  console.log(recievedTotal, sentTotal);
 
-  var names = document.querySelectorAll('.m_five_t.p_ten_r');
-  console.log(names);
-  var me = document.querySelector('.rectBox .p_ten_t .bold').innerText;
-  console.log(me);
+  const names = document.querySelectorAll('.m_five_t.p_ten_r');
+  const me = document.querySelector('.rectBox .p_ten_t .bold').innerText;
   names = [...names].map(a => a.innerText);
-  console.log(names);
   chargedArr = names.filter(a => a.includes('charged'));
-  console.log(chargedArr);
 
   const emojiArr = getEmojis(document.querySelector('body').innerText);
 
@@ -70,22 +62,15 @@ function calcStats() {
 
   // console.log(transactions);
 
-  console.log(emojiArr);
-
-  chrome.runtime.sendMessage(
-    {
-      title: 'collectionDone',
-      recievedArr,
-      sentArr,
-      recievedTotal,
-      sentTotal,
-      names,
-      me,
-      chargedArr,
-      emojiArr
-    },
-    function(response) {
-      console.dir(response);
-    }
-  );
+  chrome.runtime.sendMessage({
+    title: 'collectionDone',
+    recievedArr,
+    sentArr,
+    recievedTotal,
+    sentTotal,
+    names,
+    me,
+    chargedArr,
+    emojiArr
+  });
 }

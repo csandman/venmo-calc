@@ -15,7 +15,7 @@ calcStatsButton.onclick = () => {
   console.log('Click:', calcStatsButton);
   document.querySelector('.initial-content').classList.add('hidden');
   document.querySelector('.loader-container').classList.remove('hidden');
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+  chrome.tabs.query({ active: true, currentWindow: true }, () => {
     chrome.tabs.executeScript({ file: 'collect_stats.js' });
   });
 };
@@ -28,7 +28,8 @@ function getNetTotal(recieved, sent) {
   return Math.round((recieved - sent) * 100) / 100;
 }
 
-chrome.runtime.onMessage.addListener(function(message, callback) {
+chrome.runtime.onMessage.addListener(message => {
+  console.log('message recieved');
   console.log('message', message);
   if (message.title === 'collectionDone') {
     document.getElementById('total-sent').innerText = `$${numberWithCommas(
@@ -50,7 +51,5 @@ chrome.runtime.onMessage.addListener(function(message, callback) {
     );
     document.querySelector('.loader-container').classList.add('hidden');
     document.querySelector('.final-content').classList.remove('hidden');
-    console.log('message recieved');
-    console.log('message', message);
   }
 });
