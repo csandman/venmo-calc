@@ -2,9 +2,9 @@
 
 let calcStatsButton = document.getElementById('calc-stats-button');
 
-chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
   console.log(tabs[0]);
-  if (!tabs[0].url.includes('https://venmo.com')) {
+  if (!/^https:\/\/venmo\.com\/.+/.test(tabs[0].url)) {
     calcStatsButton.disabled = true;
   }
 });
